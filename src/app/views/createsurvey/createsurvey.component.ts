@@ -45,7 +45,10 @@ interface car {
                 }))
             ])
         ])
-    ]
+    ],
+    host:{
+        '(window.resize)':'onResize($event)'
+    }
 })
 export class CreatesurveyComponent implements OnInit {
     masters: any;
@@ -71,6 +74,7 @@ export class CreatesurveyComponent implements OnInit {
     selectedCar1: car;
     surveyId: any;
     liked: boolean;
+    pageHeight: string;
     constructor(private messageService: MessageService,private addSurveyService:AddSurveyService) {
         this.cars = [
             { label: 'Default', value: 'dark' }
@@ -170,6 +174,7 @@ export class CreatesurveyComponent implements OnInit {
             }
         }
         ];
+        this.onResize();
     }
     dropdownChange(dropval) {
         //console.log(this.dropval.type.name);
@@ -184,13 +189,13 @@ export class CreatesurveyComponent implements OnInit {
         }
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-       this.addSurveyService.createSurvey(feed).subscribe((res:any) => {
-               console.log(res);
-                this.getSurvey();
-               this.surveyId=res._id;
+    //    this.addSurveyService.createSurvey(feed).subscribe((res:any) => {
+            //    console.log(res);
+                // this.getSurvey();
+            //    this.surveyId=res._id;
                 this.activeIndex = 1;
                 this.addColumn();
-       })
+    //    })
     }
     surveysave() {
         // console.log(pass);
@@ -267,5 +272,11 @@ export class CreatesurveyComponent implements OnInit {
     // }
     likeClicked(){
         this.liked=!this.liked;
+    }
+
+    onResize(){
+        let innerheight=window.innerHeight;
+        let height = innerheight - 250;
+        this.pageHeight=height+'px';
     }
 }
