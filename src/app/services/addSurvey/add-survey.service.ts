@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class AddSurveyService {
 
-  private _addQuestionsURL:string='https://directed-will-207311.appspot.com/api/questions/addQuestions';
-  private _createSurveyURL:string = 'https://directed-will-207311.appspot.com/api/survey';
+  private _addQuestionsURL:string=environment.survey_api+'/questions/addQuestions';
+  private _createSurveyURL:string = environment.survey_api+'/survey';
 
   constructor(private http:HttpClient) { }
 

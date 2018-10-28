@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  survey_api:'http://localhost:4040/api'
+  // survey_api:'https://directed-will-207311.appspot.com/api/'
 };
